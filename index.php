@@ -1,7 +1,7 @@
 <?php
+
 require 'db.php';
 include 'layout.php';
-
 
     $db = new DB('it3');
     $data = $db->query("SELECT * FROM  restaurant ")->fetchAll();

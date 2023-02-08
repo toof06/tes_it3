@@ -1,5 +1,12 @@
 <?php
+require "api.php";
+clearstatcache();
+$datas = Openwather::getWeather("wiesbaden", "de");
+//print_r($datas);
+//die;
 ?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,8 +39,11 @@
                 </li>
             </ul>
             <form class="d-flex">
-                <input class="form-control me-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+
+                <button class="btn btn-secondary my-2 my-sm-0" >
+                    <?= $datas ['weather'][0]['description']; ?> <br>
+                    <?= $datas ['main']['temp']; ?>C°
+                </button>
             </form>
         </div>
     </div>

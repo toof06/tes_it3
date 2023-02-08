@@ -27,7 +27,9 @@ include 'layout.php';
                 <th scope="row"><?= $row['id'] ?>  </th>
                 <td> <?= $row['name'] ?> </td>
                 <td> <?= $row['adress'] ?> </td>
-                <td> <?= $row['tel_number'] ?> </td>
+                <td>
+                    <a href="tel:"<?= $row['tel_number'] ?>> <?= $row['tel_number'] ?> </a>
+                </td>
                 <td> <?= $row['type_eat'] ?> </td>
                 <td> <?=  number_format($row['price'],2). '€'?> </td>
             </tr>

@@ -1,4 +1,6 @@
 <?php
+require 'db.php';
+$db = new DB('it3');
 require "api.php";
 clearstatcache();
 $datas = Openwather::getWeather("wiesbaden", "de");
@@ -20,11 +22,23 @@ $datas = Openwather::getWeather("wiesbaden", "de");
     <!-- awesome font -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
     <title>Our application </title>
+    <style>
+        .responsive {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+
+        <a class="navbar-brand" href="#">
+            <button class="btn btn-secondary my-2 my-sm-0" >
+                <?= $datas ['weather'][0]['description']; ?> <br>
+                <i class="fas fa-sun"><?= $datas ['main']['temp']; ?>C°</i>
+            </button>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,20 +51,19 @@ $datas = Openwather::getWeather("wiesbaden", "de");
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="add.php">Add Restaurant </a>
-
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="restaurant.php">List of Restaurant  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="order.php">List of Orders   </a>
                 </li>
             </ul>
-            <form class="d-flex">
 
-                <button class="btn btn-secondary my-2 my-sm-0" >
-                    <?= $datas ['weather'][0]['description']; ?> <br>
-                    <i class="fas fa-sun"><?= $datas ['main']['temp']; ?>C°</i>
-                </button>
-            </form>
         </div>
     </div>
 </nav>
-<h1> Restaurant informations </h1>
+
 
 
 
@@ -66,8 +79,6 @@ $datas = Openwather::getWeather("wiesbaden", "de");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 -->
 
-</body>
-</html>
 
 
 

@@ -1,44 +1,44 @@
 <?php
 
-require 'db.php';
-include 'layout.php';
+
+require 'layout.php';
 
     $db = new DB('it3');
-    $data = $db->query("SELECT * FROM  restaurant ")->fetchAll();
+    $types_eat = $db->query("SELECT * FROM type_eat  ")->fetchAll();
 
 ?>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">name</th>
-            <th scope="col">adress</th>
-            <th scope="col">tel number</th>
-            <th scope="col">type of eat </th>
-            <th scope="col"> preis </th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          foreach ($data as $row) {
-        ?>
-            <tr>
-                <th scope="row"><?= $row['id'] ?>  </th>
-                <td> <?= $row['name'] ?> </td>
-                <td> <?= $row['adress'] ?> </td>
-                <td>
-                    <a href="tel:"<?= $row['tel_number'] ?>> <?= $row['tel_number'] ?> </a>
-                </td>
-                <td> <?= $row['type_eat'] ?> </td>
-                <td> <?=  number_format($row['price'],2). '€'?> </td>
-            </tr>
 
-        <?php
-        }
-        ?>
-        </tbody>
-    </table>
+
+<div class="container">
+    <div class="row">
+        <h2> Wählen Sie bitte Ihre Wünschemenue  </h2>
+        <hr>
+        
+        <form action="restaurant.php" method="post">
+            <?php foreach ($types_eat as $type_eat) : ?>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="check_list[]" value="<?= $type_eat['id_eat'] ?>" id="flexCheckDefault<?= $type_eat['id_eat'] ?>">
+
+                        <label class="form-check-label" for="flexCheckDefault<?= $type_eat['id_eat'] ?>">
+                            <img src="<?= $type_eat['image_url']?>" alt="<?= $type_eat['name_eat']?>" width="25" height="25">
+
+                            <?= $type_eat['name_eat'] ?>
+                        </label>
+
+
+                    </div>
+
+                
+            <?php endforeach ?>
+
+            <br>
+            <button class="btn btn-primary" type="submit"> Senden </button>
+        </form>
+    </div>
+</div>
+
 
 
 

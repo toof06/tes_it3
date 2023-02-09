@@ -1,32 +1,22 @@
 <?php
 
 
-include 'layout.php';
+require 'layout.php';
+$db = new DB('it3');
+$types_eat = $db->query("SELECT * FROM type_eat  ")->fetchAll();
 
-if (!empty($_POST) ){
-    // Only process if form is submitted (when page is launched, it use GET method)
-    require 'db.php';
+if (!empty($_POST) && isset($_POST)){
 
-    $db = new DB('it3');
-
-    $stmt = $db->prepare("INSERT INTO restaurant (name, adress,tel_number, type_eat, price) VALUES (:name, :adress,:tel_number, :type_eat, :price)");
-
+    $stmt = $db->prepare("INSERT INTO restaurant (name, adress,tel_number, type_eat_id) VALUES (:name, :adress,:tel_number, :type_eat_id)");
     $stmt->bindParam(':name', $_POST['name']);
     $stmt->bindParam(':adress', $_POST['adress']);
     $stmt->bindParam(':tel_number', $_POST['tel_number']);
-    $stmt->bindParam(':type_eat', $_POST['type_eat']);
-    $stmt->bindParam(':price', $_POST['price']);
-
-    $name = $_POST['name'];
-    $adress = $_POST['adress'];
-    $tel_number = $_POST['tel_number'];
-    $type_eat = $_POST['type_eat'];
-    $price = $_POST['price'];
+    $stmt->bindParam(':type_eat_id', $_POST['type_eat_id']);
 
     $stmt->execute();
 
     // Redirect to index.php
-    header('Location: /index.php');
+    header('Location: /restaurant.php');
 
 }
 
@@ -49,17 +39,11 @@ if (!empty($_POST) ){
                     <input type="number" name="tel_number" class="form-control"  placeholder="Enter telephone number  ">
                 </div>
                 <div class="form-group">
-                    <label >price  </label>
-                    <input type="number" name="price" class="form-control"  placeholder="Enter the price  ">
-                </div>
-                <div class="form-group">
                     <label> Type of eat </label>
-                    <select name="type_eat" class="form-control" >
-                        <option>doener</option>
-                        <option>Burger </option>
-                        <option>Asiatisch</option>
-                        <option>Pizza</option>
-                        <option>Pasta</option>
+                    <select name="type_eat_id" class="form-control" >
+                        <?php foreach ($types_eat as $type_eat) : ?>
+                            <option value="<?=$type_eat['id_eat']?>"> <?= $type_eat['name_eat'] ?> </option>
+                        <?php endforeach ?>
                     </select>
                 </div> <br>
                 <button type="submit" class="btn btn-primary">Submit</button>

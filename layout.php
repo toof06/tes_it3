@@ -35,7 +35,9 @@ $datas = Openwather::getWeather("wiesbaden", "de");
 
         <a class="navbar-brand" href="#">
             <button class="btn btn-secondary my-2 my-sm-0" >
-                <?= $datas ['weather'][0]['description']; ?> <br>
+
+                Wiesbaden  <br>
+                <?= $datas ['weather'][0]['description']; ?>  <br>
                 <i class="fas fa-sun"><?= $datas ['main']['temp']; ?>C°</i>
             </button>
         </a>

@@ -1,4 +1,10 @@
-# A simple application add restaurant and list them  <br>
+# A simple application Restaurant with basic PHP without framework (IT company probearbeit) <br>
+
+## Add Restaurant, and his type  <br>
+## List Restaurants, and his type with phone number and possibility to click on it and call the restaurant   <br>
+## add orders, list orders   <br>
+
+### Home page, we get list menu, we choose a type of restaurant and we get the exacte list   <br>
 
 
 
